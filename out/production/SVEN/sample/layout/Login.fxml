@@ -13,7 +13,7 @@
    <left>
       <AnchorPane prefHeight="800.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="400.0" fitWidth="245.0" layoutY="-1.0" pickOnBounds="true">
+            <ImageView fx:id="imgView" fitHeight="400.0" fitWidth="251.0" pickOnBounds="true">
                <image>
                   <Image url="@../img/7.jpg" />
                </image>
@@ -25,8 +25,8 @@
                   <TextField fx:id="unameField" layoutX="103.0" layoutY="111.0" prefHeight="30.0" prefWidth="208.0" promptText="Username" />
                   <Button fx:id="exitButton" layoutX="25.0" layoutY="276.0" mnemonicParsing="false" onAction="#exitButtonAction" prefHeight="33.0" prefWidth="129.0" text="Exit" />
                   <PasswordField fx:id="passwordField" layoutX="103.0" layoutY="188.0" prefHeight="32.0" prefWidth="208.0" promptText="Password" />
-                  <Label layoutX="32.0" layoutY="236.0" prefHeight="25.0" prefWidth="292.0" text="Invalid login, please try again" textAlignment="CENTER" textFill="#d71717" />
-                  <Button fx:id="loginButton" layoutX="192.0" layoutY="276.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="135.0" text="Login" />
+                  <Label fx:id="loginMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="236.0" prefHeight="25.0" prefWidth="292.0" textAlignment="CENTER" textFill="#d71717" />
+                  <Button fx:id="loginButton" layoutX="192.0" layoutY="276.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="33.0" prefWidth="135.0" text="Login" />
                </children>
             </AnchorPane>
          </children>
