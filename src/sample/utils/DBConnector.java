@@ -1,4 +1,4 @@
-package sample.DBConnector;
+package sample.utils;
 
 
 import javafx.collections.FXCollections;
