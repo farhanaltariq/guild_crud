@@ -1,5 +1,8 @@
 package sample;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -7,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.stage.StageStyle;
 import sample.utils.DBConnector;
 
 import java.sql.Connection;
@@ -52,6 +56,18 @@ public class LoginController  {
             while (queryResult.next()){
                 if (queryResult.getInt(1)==1){
                     loginMessage.setText("Login Successful");
+                    try {
+                        Stage stage = (Stage) exitButton.getScene().getWindow();
+                        stage.close();
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("layout/Main.fxml"));
+                        Parent root1 = (Parent) fxmlLoader.load();
+                        stage = new Stage();
+                        stage.initStyle(StageStyle.UNDECORATED);
+                        stage.setScene(new Scene(root1));
+                        stage.show();
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
                 }else {
                     loginMessage.setText("Wrong username or password");
                 }
