@@ -13,6 +13,24 @@ public class DBConnector {
     // objects to hold the data
     private TableView tableView;
     private ObservableList<ObservableList> queryData;
+    public Connection databaseLink;
+
+    // this method used to verify login
+    public Connection getConnection(){
+        String dbName = "db_oop";
+        String dbUser = "root";
+        String dbPassword = "";
+        String url = "jdbc:mysql://localhost:3306/"+dbName;
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            databaseLink = DriverManager.getConnection(url,dbUser,dbPassword);
+        } catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+        return databaseLink;
+    }
 
     // initialize the objects
     public DBConnector() {
