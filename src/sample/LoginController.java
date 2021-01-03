@@ -60,10 +60,10 @@ public class LoginController  {
                         Stage stage = (Stage) exitButton.getScene().getWindow();
                         stage.close();
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("layout/Main.fxml"));
-                        Parent root1 = (Parent) fxmlLoader.load();
+                        var root1 = (Parent) fxmlLoader.load();
                         stage = new Stage();
                         stage.initStyle(StageStyle.UNDECORATED);
-                        stage.setScene(new Scene(root1));
+                        stage.setScene(new Scene(root1, 850, 550));
                         stage.show();
                     } catch(Exception e) {
                         e.printStackTrace();
