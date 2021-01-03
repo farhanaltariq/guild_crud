@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,8 +15,13 @@
       <AnchorPane prefHeight="332.0" prefWidth="141.0" style="-fx-background-color: deepskyblue;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="logoutButton" layoutX="14.0" layoutY="408.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="40.0" prefWidth="113.0" text="Log Out" />
-            <Button fx:id="charinfoButton" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="113.0" text="Char. Info" />
-            <Button fx:id="questButton" layoutX="14.0" layoutY="63.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="113.0" text="Quest" />
+            <Button fx:id="charinfoButton" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="113.0" text="Char. Info" />
+            <Button fx:id="questButton" layoutX="14.0" layoutY="140.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="113.0" text="Quest" />
+            <Label alignment="CENTER" layoutY="25.0" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: orange;" text="Administrator" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Bold" size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </left>
@@ -34,4 +41,21 @@
          </children>
       </AnchorPane>
    </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="questTable" layoutX="-1.0" layoutY="1.0" prefHeight="475.0" prefWidth="710.0">
+              <columns>
+                <TableColumn fx:id="idColumn" prefWidth="40.0" text="id" />
+                <TableColumn fx:id="titleColumn" prefWidth="176.0" text="Title" />
+                  <TableColumn fx:id="rankColumn" minWidth="0.0" prefWidth="59.0" text="Rank" />
+                  <TableColumn fx:id="typeColumn" minWidth="0.0" prefWidth="150.0" text="Type" />
+                  <TableColumn fx:id="maxhunterColumn" prefWidth="78.0" text="Max. Hunter" />
+                  <TableColumn fx:id="minPowerColumn" prefWidth="84.0" text="Min. Power" />
+                  <TableColumn fx:id="rewardColumn" prefWidth="121.0" text="Reward" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

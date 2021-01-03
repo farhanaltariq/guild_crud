@@ -1,14 +1,12 @@
 package sample.model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
 public class GuildMaster extends User implements Management{
     public GuildMaster(){}
-    public ObservableList<Quest> getQuest(){
 
-        return null;
-    }
     @Override
     public void create(TableView tableView, Object object, MANAGE mode) {
 
