@@ -1,12 +1,23 @@
 package sample.model;
 
 public class Herb extends GameObject{
+    private int id;
+    private String name;
+    private String rank;
+    private String rarity;
+    public Herb(int id, String name, String rarity){
 
-    public Herb(int id, String name, String rarity, String rank){
-        super(id, name, rarity, rank);
     }
     @Override
     public String getRank(){
-        return "a";
+        if (rarity=="Mythical")
+            rank = "s";
+        else if (rarity=="Legendary")
+            rank = "A";
+        else if (rarity=="Epic")
+            rank = "B";
+        else if(rarity=="Rare")
+            rank = "C";
+        return rank;
     }
 }

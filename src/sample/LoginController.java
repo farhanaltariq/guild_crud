@@ -16,16 +16,17 @@ import sample.utils.DBConnector;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import sample.MainController;
 
 public class LoginController  {
     @FXML private Button loginButton;
     @FXML private Button exitButton;
     @FXML private ImageView imgView;
-    @FXML private TextField unameField;
+    @FXML protected TextField unameField;
     @FXML private PasswordField passwordField;
     @FXML private Label loginMessage;
     @FXML private Button resetButton;
-
+    MainController mainController;
 
     public void exitButtonAction(ActionEvent event){
         Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -55,16 +56,11 @@ public class LoginController  {
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             while (queryResult.next()){
                 if (queryResult.getInt(1)==1){
-                    loginMessage.setText("Login Successful");
                     try {
                         Stage stage = (Stage) exitButton.getScene().getWindow();
                         stage.close();
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("layout/Main.fxml"));
-                        var root1 = (Parent) fxmlLoader.load();
-                        stage = new Stage();
-                        stage.initStyle(StageStyle.UNDECORATED);
-                        stage.setScene(new Scene(root1, 850, 550));
-                        stage.show();
+                        mainController = new MainController();
+                        mainController.start(unameField.getText());
                     } catch(Exception e) {
                         e.printStackTrace();
                     }

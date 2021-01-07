@@ -8,27 +8,17 @@ public class GuildMaster extends User implements Management{
     public GuildMaster(){}
 
     @Override
-    public void create(TableView tableView, Object object, MANAGE mode) {
+    public void create(int id) {
 
     }
 
     @Override
-    public void read(TableView tableView, Object object, MANAGE mode) {
+    public void update(int id) {
 
     }
 
     @Override
-    public void update(TableView tableView, Object object, MANAGE mode) {
+    public void delete(int id) {
 
-    }
-
-    @Override
-    public void delete(TableView tableView, Object object, MANAGE mode) {
-
-    }
-
-    @Override
-    public Object get(TableView tableView) {
-        return null;
     }
 }
