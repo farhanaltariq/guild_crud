@@ -10,8 +10,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.model.Quest;
+import sample.utils.DBConnector;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class MainController  {
@@ -22,11 +27,11 @@ public class MainController  {
     @FXML    private Button goodsButton;
     @FXML    private Button monstersButton;
     @FXML    private AnchorPane table;
-    private ArrayList<Quest> quests = new ArrayList<Quest>();
+    private final Quest quest = new Quest();
     @FXML    private TextArea data;
 
 
-    public void logoutButtonAction(ActionEvent event){
+    public void logoutButtonAction(){
         try{
             Stage stage = (Stage) logoutButton.getScene().getWindow();
             stage.close();
@@ -43,28 +48,53 @@ public class MainController  {
     }
     public void start(String username) throws Exception{
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(MainController.class.getResource("layout/main.fxml"));
+        Parent root;
+        if (username.equals("admin"))
+            root = FXMLLoader.load(MainController.class.getResource("layout/Main.fxml"));
+        else
+            root = FXMLLoader.load(MainController.class.getResource("layout/MainUser.fxml"));
         primaryStage.setTitle("Guild");
         primaryStage.setScene(new Scene(root, 850, 550));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
-        if (!username.equals("admin"))
-            System.out.println("im user");
-        else
-            System.out.println("im admin");
     }
-    public void userView(){
-        memberButton.setVisible(false);
-        questsButton.setVisible(true);
-        herbsButton.setVisible(false);
-        goodsButton.setVisible(false);
-        monstersButton.setVisible(false);
+    public void questsButtonOnAction(){
+        String info = quest.getStatus().toString().replace("[","\n").replace("]","\n");
+        data.clear();
+        data.setText("ID\tTitle\t\t\t\tRank\t\t\tType\t\t\tMax. Hunter \t\tMin. Power\t\tReward\t\tStatus\n");
+        data.appendText(info);
     }
-    public void questsButtonOnAction(ActionEvent event){
-        quests.add(new Quest("Hunt Kraken","S","Hunting"));
-        data.setText("Title\t\t\t\tRank\t\t\tType\t\t\tMax. Hunter \t\tMin. Power\t\tReward\t\tStatus\n\n");
-        data.appendText(quests.get(0).getStatus());
+    public void memberButtonOnAction(){
+        String memberData = null;
+        DBConnector db = new DBConnector();
+        Connection con  = db.getConnection();
+        data.clear();
+        try {
+            Statement st = con.createStatement();
+            String sql = ("SELECT * FROM hunter ORDER BY id;");
+            ResultSet rs = st.executeQuery(sql);
+            int x = 0;
+            while (rs.next()) {
+                memberData = "\n";
+                memberData+="ID\t\t: "+rs.getInt("id")+"\n";
+                memberData+="Name\t: "+rs.getString("name")+"\n";
+                memberData+="Rank\t\t: "+rs.getString("rank");
+                data.appendText("\n"+memberData);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
-
-
+    public void herbsButtonOnAction(){
+        data.clear();
+    }
+    public void goodsButtonOnAction(){
+        data.clear();
+    }
+    public void monstersButtonOnAction(){
+        data.clear();
+    }
+    public void clearButtonOnAction(){
+        data.clear();
+    }
 }

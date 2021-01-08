@@ -10,5 +10,14 @@
     <orderEntry type="library" name="javafx15" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.22" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.22" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/annotations-20.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

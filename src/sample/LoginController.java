@@ -28,17 +28,17 @@ public class LoginController  {
     @FXML private Button resetButton;
     MainController mainController;
 
-    public void exitButtonAction(ActionEvent event){
+    public void exitButtonAction(){
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
 
-    public void resetButtonAction(ActionEvent event){
+    public void resetButtonAction(){
         unameField.setText("");
         passwordField.setText("");
     }
 
-    public void loginButtonAction(ActionEvent event){
+    public void loginButtonAction(){
         if (!unameField.getText().isBlank() && !passwordField.getText().isBlank()) {
             validateLogin();
         }else {
@@ -50,7 +50,7 @@ public class LoginController  {
         DBConnector connectNow = new DBConnector();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM useraccount WHERE username = '"+unameField.getText()+"' AND password = md5('"+passwordField.getText()+"');";
+        String verifyLogin = "SELECT count(1) FROM users WHERE username = '"+unameField.getText()+"' AND password = md5('"+passwordField.getText()+"');";
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);

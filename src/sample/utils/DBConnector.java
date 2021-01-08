@@ -17,7 +17,7 @@ public class DBConnector {
 
     // this method used to verify login
     public Connection getConnection(){
-        String dbName = "db_oop";
+        String dbName = "guild";
         String dbUser = "root";
         String dbPassword = "";
         String url = "jdbc:mysql://localhost:3306/"+dbName;
