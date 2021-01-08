@@ -1,3 +1,2 @@
 # SVEN
-deadline dah dekat
-mampus kita
+Source Code di folder src/
