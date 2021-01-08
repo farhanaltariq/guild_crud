@@ -1,5 +1,11 @@
 package sample.model;
 
+import sample.utils.DBConnector;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Hunter {
@@ -30,5 +36,23 @@ public class Hunter {
                 rank = "C";
 
         return rank;
+    }
+    public static String getData(){
+        String memberData = "";
+        DBConnector db = new DBConnector();
+        Connection con  = db.getConnection();
+        try {
+            Statement st = con.createStatement();
+            String sql = ("SELECT * FROM hunter ORDER BY id;");
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                memberData+="\nID\t\t: "+rs.getInt("id")+"\n";
+                memberData+="Name\t: "+rs.getString("name")+"\n";
+                memberData+="Rank\t\t: "+rs.getString("rank")+"\n";
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return memberData;
     }
 }

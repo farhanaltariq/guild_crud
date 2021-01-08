@@ -1,5 +1,12 @@
 package sample.model;
 
+import sample.utils.DBConnector;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Goods extends GameObject{
     //aku nambahin price, setter,getter price, body dr override, sama kaya bpknya
     private int price;
@@ -27,5 +34,24 @@ public class Goods extends GameObject{
         else if (getPrice() > 10000) rank = "C";
         setRank(rank);
         return rank;
+    }
+    public static String getData(){
+        String temp= "";
+        DBConnector db = new DBConnector();
+        Connection con  = db.getConnection();
+        try {
+            Statement st = con.createStatement();
+            String sql = ("SELECT * FROM goods ORDER BY id;");
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                temp+="\nID\t\t: "+rs.getInt("id")+"\n";
+                temp+="Name\t: "+rs.getString("name")+"\n";
+                temp+="Rank\t\t: "+rs.getString("rank")+"\n";
+                temp+="Value\t: "+rs.getDouble("value")+"\n";
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return temp;
     }
 }

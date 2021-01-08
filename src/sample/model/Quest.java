@@ -5,14 +5,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Quest {
-    private int id;
     private String title;
     private String rank;
     private String type;
     private int maxHunter;
     private int minPower;
     private double reward;
-    private String availability;
+
     public Quest(String title, String rank, String type){
         this.title = title;
         this.rank = rank;
@@ -39,36 +38,38 @@ public class Quest {
     }
     public Quest(){
 
-    };
+    }
+
     private void setData(){
-        if (rank=="S"){
+        if (rank.equals("S")){
             this.minPower=300;
             this.maxHunter=5;
             this.reward=1000;
         }
     }
-    private ArrayList<String> status = new ArrayList<>();
-    private String temp;
+    private final ArrayList<String> status = new ArrayList<>();
+
     public ArrayList<String> getStatus(){
         DBConnector db = new DBConnector();
         Connection con  = db.getConnection();
+        this.status.clear();
         try {
             Statement st = con.createStatement();
             String sql = ("SELECT * FROM quest ORDER BY id;");
             ResultSet rs = st.executeQuery(sql);
             int x = 0;
             while (rs.next()) {
-                this.id = rs.getInt("id");
+                int id = rs.getInt("id");
                 title = rs.getString("title");
                 rank = rs.getString("rank");
                 type = rs.getString("type");
                 maxHunter = rs.getInt("maxhunter");
                 minPower = rs.getInt("minpower");
-                reward = rs.getInt("reward");
-                availability = rs.getString("availability");
-                temp = "\n"+id+"\t"+title + "\t\t\t" + rank + "\t\t" + type + "\t\t\t" +
-                        maxHunter +"\t\t\t" + minPower + "\t\t\t\t" + reward + "\t\t\t" + availability;
-                this.status.add(x,temp);
+                reward = rs.getDouble("reward");
+                String availability = rs.getString("availability");
+                String temp = "\n" + id + "\t" + title + "\t\t\t" + rank + "\t\t" + type + "\t\t\t" +
+                        maxHunter + "\t\t\t" + minPower + "\t\t\t\t" + reward + "\t\t\t" + availability;
+                this.status.add(x, temp);
                 x++;
             }
         } catch (SQLException throwables) {
