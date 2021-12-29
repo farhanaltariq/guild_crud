@@ -2,6 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,8 +12,10 @@ import sample.model.*;
 import sample.utils.DBConnector;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainController  {
+public class MainController implements Initializable {
     @FXML    private Button logoutButton;
     @FXML    private TextArea data;
     @FXML    private TextField tableField;
@@ -24,9 +27,9 @@ public class MainController  {
     @FXML    private TextField minPowerField;
     @FXML    private TextField rewardField;
     @FXML    private TextField availabilityField;
+    @FXML    private Button infoButton;
     DBConnector dbConnector = new DBConnector();
-    public MainController() {
-    }
+    private String username;
 
     public void logoutButtonAction(){
         try{
@@ -44,6 +47,8 @@ public class MainController  {
         }
     }
     public void start(String username) throws Exception{
+        this.username=username;
+        System.out.println(username);
         Stage primaryStage = new Stage();
         Parent root;
         if (username.equals("admin"))
@@ -94,9 +99,26 @@ public class MainController  {
         }
     }
     public void updateButtonOnAction(){
-
     }
     public void deleteButtonOnAction(){
 
+    }
+
+    public void infoButtonOnAction(){
+        data.setText("");
+        data.appendText(Hunter.getInfo(this.username));
+        System.out.println(Hunter.getInfo(this.username));
+        System.out.println(this.username);
+    }
+    public void partyButtonOnAction(){
+
+    }
+    public void inventoryButtonOnAction(){
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        infoButton.setText(username);
     }
 }

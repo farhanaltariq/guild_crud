@@ -55,4 +55,28 @@ public class Hunter {
         }
         return memberData;
     }
+    public static String getInfo(String username){
+        String info = "";
+        DBConnector db = new DBConnector();
+        Connection con  = db.getConnection();
+        try {
+            ResultSet rs;
+            Statement st = con.createStatement();
+            String sql =
+                    "SELECT * FROM hunter WHERE hunter.id " +
+                            "LIKE (SELECT id FROM users WHERE " +
+                            "users.username='"+username+"')";
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                info+="\nName\t: "+rs.getString("name")+"\n";
+                info+="Rank\t\t: "+rs.getString("rank")+"\n";
+                System.out.println("GET DATA SUCCESS");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        System.out.println(username);
+        System.out.println("You Here");
+        return info;
+    }
 }

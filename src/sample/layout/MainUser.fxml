@@ -16,9 +16,9 @@
          <children>
             <Button fx:id="logoutButton" layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="40.0" prefWidth="113.0" text="Log Out" />
             <Button fx:id="questButton" layoutX="14.0" layoutY="90.0" mnemonicParsing="false" onAction="#questsButtonOnAction" prefHeight="40.0" prefWidth="113.0" text="Quest" />
-            <Button layoutX="14.0" layoutY="39.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="113.0" text="Home" />
-            <Button layoutX="14.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="113.0" text="Party" />
-            <Button layoutX="14.0" layoutY="191.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="113.0" text="Inventory" />
+            <Button fx:id="infoButton" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#infoButtonOnAction" prefHeight="40.0" prefWidth="113.0" text="Info" />
+            <Button fx:id="partyButton" layoutX="14.0" layoutY="140.0" mnemonicParsing="false" onAction="#partyButtonOnAction" prefHeight="40.0" prefWidth="113.0" text="Party" />
+            <Button fx:id="inventory" layoutX="14.0" layoutY="191.0" mnemonicParsing="false" onAction="#inventoryButtonOnAction" prefHeight="40.0" prefWidth="113.0" text="Inventory" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-7.0" layoutY="-2.0" prefHeight="84.0" prefWidth="864.0" style="-fx-background-color: deepskyblue;">
